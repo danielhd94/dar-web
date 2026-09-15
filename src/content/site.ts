@@ -161,4 +161,17 @@ export const seo = {
     title: "Contacto | DAR",
     description: "Cuéntanos qué necesita tu negocio y te conectaremos con el equipo de DAR correspondiente.",
   },
+  centroRadar: {
+    title: "Centro raDAR | Acceso para socios",
+    description:
+      "Ingresa al Centro raDAR para consultar comunicados, beneficios, capacitación, materiales y canales de soporte.",
+  },
+  aviso: {
+    title: "Aviso de privacidad | DAR",
+    description: "Consulta cómo DAR Comunicaciones trata y protege tus datos personales.",
+  },
+  terminos: {
+    title: "Términos y condiciones | DAR",
+    description: "Condiciones de uso del sitio web de DAR Comunicaciones.",
+  },
 } as const;

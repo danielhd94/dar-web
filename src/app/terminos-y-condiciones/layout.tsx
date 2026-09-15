@@ -1,7 +1,7 @@
 import { pageMeta } from "@/lib/seo";
 import { seo } from "@/content/site";
 
-export const metadata = pageMeta(seo.comunidad.title, seo.comunidad.description, "/comunidad-radar");
+export const metadata = pageMeta(seo.terminos.title, seo.terminos.description, "/terminos-y-condiciones");
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return children;

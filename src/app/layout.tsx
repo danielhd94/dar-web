@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ConsultTab from "@/components/ConsultTab";
 import { seo } from "@/content/site";
+import { pageMeta, SITE_NAME, SITE_URL } from "@/lib/seo";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -19,18 +20,17 @@ const plusJakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  ...pageMeta(seo.home.title, seo.home.description, "/"),
   title: {
     default: seo.home.title,
     template: "%s",
   },
-  description: seo.home.description,
-  openGraph: {
-    type: "website",
-    locale: "es_MX",
-    siteName: "DAR",
-    title: seo.home.title,
-    description: seo.home.description,
-  },
+  applicationName: SITE_NAME,
+  authors: [{ name: SITE_NAME, url: SITE_URL }],
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
+  robots: { index: true, follow: true },
 };
 
 export const viewport: Viewport = {
