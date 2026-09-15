@@ -1,26 +1,460 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
 @import "tailwindcss";
 
+/* ═══════════════════════════════════════════════════════════
+   1. DESIGN TOKENS — ISP template (desing.png) + marca DAR
+   Primary cyan #1EA7E0, navy text #1B2A4A, accent yellow #FFD44D.
+   ═══════════════════════════════════════════════════════════ */
+@theme {
+  --color-primary: #1EA7E0;
+  --color-primary-50: #E8F7FC;
+  --color-primary-100: #D2F0FA;
+  --color-primary-200: #A6E0F4;
+  --color-primary-300: #6CCCEC;
+  --color-primary-400: #3BB8E6;
+  --color-primary-500: #1EA7E0;
+  --color-primary-600: #1896D4;
+  --color-primary-700: #0E7FBE;
+
+  --color-navy: #17143D;           /* Azul noche corporativo DAR */
+  --color-navy-light: #242054;
+  --color-navy-dark: #0F0D29;
+
+  --color-credi: #FF5E6C;          /* Dar Credi Coral */
+  --color-credi-hover: #F04856;
+
+  --color-pagafast: #2DD6C5;       /* PagaFast Menta/Turquesa */
+  --color-pagafast-hover: #22BFA0;
+
+  --color-radar: #FFD44D;          /* raDAR Golden Yellow */
+  --color-radar-hover: #F5C738;
+
+  --color-cream: #F4F5F7;          /* Canvas Soft Neutral */
+  --color-cream-card: #FFFFFF;
+
+  --color-border-warm: #E2E8F0;
+  --color-border-subtle: #F1F5F9;
+
+  --color-accent: #FFD44D;
+
+  /* Fonts */
+  --font-sans: var(--font-inter), Inter, sans-serif;
+  --font-display: var(--font-plus-jakarta), "Plus Jakarta Sans", sans-serif;
+  --font-mono: "Space Mono", "JetBrains Mono", monospace;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   2. SEMANTIC CSS VARIABLES (:root)
+   ═══════════════════════════════════════════════════════════ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --theme-navy: #1B2A4A;
+  --theme-primary: #1EA7E0;
+  --theme-primary-hover: #1896D4;
+  --theme-credi: #FF5E6C;
+  --theme-pagafast: #2DD6C5;
+  --theme-radar: #FFD44D;
+
+  --theme-bg-page: #F4F5F7;
+  --theme-bg-card: #FFFFFF;
+  --theme-bg-subtle: #F8FAFC;
+  --theme-border: #E2E8F0;
+  --theme-border-hover: #CBD5E1;
+
+  --theme-text-heading: #1B2A4A;
+  --theme-text-body: #334155;
+  --theme-text-muted: #64748B;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Keyframes */
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(16px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ═══════════════════════════════════════════════════════════
+   3. BASE ELEMENTS
+   ═══════════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--theme-bg-page);
+  color: var(--theme-text-heading);
+  font-family: var(--font-inter), Inter, sans-serif;
+  overflow-x: hidden;
+}
+
+img, svg, video {
+  max-width: 100%;
+}
+
+.site-header {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+.site-drawer {
+  padding-top: calc(4.25rem + env(safe-area-inset-top, 0px));
+  background-color: #ffffff;
+}
+
+body.nav-open {
+  overflow: hidden;
+}
+
+/* Section Container */
+.section-container {
+  width: 100%;
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: max(1rem, env(safe-area-inset-left));
+  padding-right: max(1rem, env(safe-area-inset-right));
+}
+@media (min-width: 640px) {
+  .section-container {
+    padding-left: max(1.5rem, env(safe-area-inset-left));
+    padding-right: max(1.5rem, env(safe-area-inset-right));
+  }
+}
+@media (min-width: 1024px) {
+  .section-container {
+    padding-left: max(2.5rem, env(safe-area-inset-left));
+    padding-right: max(2.5rem, env(safe-area-inset-right));
+  }
+}
+
+::selection {
+  background-color: #1EA7E0;
+  color: #ffffff;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #F4F5F7; }
+::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
+
+/* ═══════════════════════════════════════════════════════════
+   4. SISTEMA DE BOTONES Y COMPONENTES
+   ═══════════════════════════════════════════════════════════ */
+
+/* Botón Primario: Violeta DAR con borde geométrico limpio */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.25rem;
+  min-height: 2.75rem;
+  border-radius: 0.375rem;
+  font-family: var(--font-display), "Plus Jakarta Sans", sans-serif;
+  font-weight: 700;
+  font-size: 0.8125rem;
+  background-color: #1EA7E0;
+  color: #ffffff;
+  border: 1px solid #1896D4;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.btn-primary:hover {
+  background-color: #1896D4;
+  border-color: #0E7FBE;
+  color: #ffffff;
+}
+.btn-primary:active {
+  background-color: #0E7FBE;
+}
+
+/* Botón Secundario: Blanco institucional con borde limpio */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.25rem;
+  min-height: 2.75rem;
+  border-radius: 0.375rem;
+  font-family: var(--font-display), "Plus Jakarta Sans", sans-serif;
+  font-weight: 600;
+  font-size: 0.8125rem;
+  background-color: #ffffff;
+  color: #1B2A4A;
+  border: 1px solid #CBD5E1;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.btn-secondary:hover {
+  border-color: #94A3B8;
+  background-color: #F8FAFC;
+  color: #1B2A4A;
+}
+.btn-secondary:active {
+  background-color: #F1F5F9;
+}
+
+/* Botón raDAR / Accent Dorado */
+.btn-radar, .btn-accent {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.4rem;
+  border-radius: 0.375rem;
+  font-family: var(--font-display), "Plus Jakarta Sans", sans-serif;
+  font-weight: 700;
+  font-size: 0.8125rem;
+  background-color: #FFD44D;
+  color: #17143D;
+  border: 1px solid #F5C738;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.btn-radar:hover, .btn-accent:hover {
+  background-color: #F5C738;
+}
+
+/* Botón Dar Credi */
+.btn-credi {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.4rem;
+  border-radius: 0.375rem;
+  font-family: var(--font-display), "Plus Jakarta Sans", sans-serif;
+  font-weight: 700;
+  font-size: 0.8125rem;
+  background-color: #FF5E6C;
+  color: #ffffff;
+  border: 1px solid #E54B59;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.btn-credi:hover {
+  background-color: #E54B59;
+}
+
+/* Botón PagaFast */
+.btn-pagafast {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.4rem;
+  border-radius: 0.375rem;
+  font-family: var(--font-display), "Plus Jakarta Sans", sans-serif;
+  font-weight: 700;
+  font-size: 0.8125rem;
+  background-color: #0D9488;
+  color: #ffffff;
+  border: 1px solid #0F766E;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.btn-pagafast:hover {
+  background-color: #0F766E;
+}
+
+/* Tarjetas estilo Telecom */
+.card-telcel, .card-telecom {
+  background-color: #ffffff;
+  border: 1px solid #E2E8F0;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(23, 20, 61, 0.03);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+.card-telcel:hover, .card-telecom:hover {
+  border-color: #CBD5E1;
+  box-shadow: 0 4px 12px rgba(23, 20, 61, 0.05);
+}
+
+
+/* Badges institucionales */
+.badge-telcel {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 0.375rem;
+  font-family: var(--font-sans), sans-serif;
+  font-weight: 600;
+  font-size: 0.75rem;
+}
+
+/* Reusable general card (Telecom Geometric Style) */
+.card {
+  background: #ffffff;
+  border: 1px solid #E2E8F0;
+  border-radius: 0.375rem;
+  transition: all 0.2s ease;
+  position: relative;
+  box-shadow: 0 1px 3px rgba(23, 20, 61, 0.04);
+}
+.card:hover {
+  border-color: #CBD5E1;
+  box-shadow: 0 4px 12px rgba(23, 20, 61, 0.06);
+}
+
+/* Glass effect compatible */
+.glass {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid #E2E8F0;
+  border-radius: 0.375rem;
+  box-shadow: 0 2px 8px rgba(23, 20, 61, 0.04);
+}
+.glass-light {
+  background: rgba(248, 250, 252, 0.8);
+  border: 1px solid #E2E8F0;
+}
+
+/* Typography Gradient */
+.text-gradient {
+  background: linear-gradient(135deg, #6236FF 0%, #FF5E6C 50%, #FFD44D 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 6s ease infinite;
+}
+.text-gradient-blue {
+  background: linear-gradient(135deg, #6236FF, #2DD6C5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.label-mono {
+  font-family: "Space Mono", monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #757193;
+}
+
+.section-number {
+  font-family: "Space Mono", monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #B2ADC8;
+}
+
+/* Telcel Top Bar */
+.top-bar-telcel {
+  background-color: #17143D;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Scroll progress */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #1EA7E0, #FFD44D);
+  z-index: 100;
+  transform-origin: left;
+}
+
+.field-label {
+  display: block;
+  font-size: 0.6875rem;
+  color: #94A3B8;
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+}
+
+.field-input {
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.55rem 0.75rem;
+  font-size: 1rem;
+  color: #1B2A4A;
+  background: #fff;
+  border: 1px solid #E2E8F0;
+  border-radius: 0.125rem;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+@media (min-width: 640px) {
+  .field-input {
+    font-size: 0.8125rem;
+  }
+}
+.field-input:focus {
+  border-color: #1EA7E0;
+}
+.field-input::placeholder {
+  color: #CBD5E1;
+}
+
+.site-nav {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.site-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.site-nav-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0.9rem 0.55rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #334155;
+  text-decoration: none;
+  white-space: nowrap;
+}
+@media (min-width: 1280px) {
+  .site-nav-link {
+    padding: 0.9rem 0.7rem;
+  }
+}
+.site-nav-link:hover,
+.site-nav-link[data-active="true"] {
+  color: #1EA7E0;
+}
+.site-nav-link[data-active="true"]::after {
+  content: "";
+  position: absolute;
+  left: 0.55rem;
+  right: 0.55rem;
+  bottom: 0;
+  height: 3px;
+  background: #1EA7E0;
+  border-radius: 2px 2px 0 0;
 }
