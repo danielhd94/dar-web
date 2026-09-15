@@ -1,12 +1,23 @@
 import type { Metadata } from "next";
 
-export const SITE_URL = "https://www.darcomunicaciones.com.mx";
+function resolveSiteUrl() {
+  const explicit = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "");
+  if (explicit) return explicit;
+
+  const host = process.env.VERCEL_PROJECT_PRODUCTION_URL || process.env.VERCEL_URL;
+  if (host) return `https://${host.replace(/^https?:\/\//, "")}`;
+
+  return "https://darcomunicaciones.vercel.app";
+}
+
+export const SITE_URL = resolveSiteUrl();
 export const SITE_NAME = "DAR Comunicaciones";
 
 export const ogImage = {
-  url: "/og.png",
+  url: `${SITE_URL}/og.png`,
   width: 1200,
   height: 630,
+  type: "image/png",
   alt: "DAR Comunicaciones: conectividad, Dar Credi, PagaFast y raDAR",
 } as const;
 
@@ -30,7 +41,7 @@ export function pageMeta(title: string, description: string, path = "/"): Metada
       card: "summary_large_image",
       title,
       description,
-      images: [ogImage.url],
+      images: [ogImage],
     },
   };
 }
