@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ConsultTab from "@/components/ConsultTab";
+import { seo } from "@/content/site";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -19,24 +20,16 @@ const plusJakarta = Plus_Jakarta_Sans({
 
 export const metadata: Metadata = {
   title: {
-    default: "DAR Comunicaciones — Ecosistema de soluciones para tu negocio",
-    template: "%s | DAR Comunicaciones",
+    default: seo.home.title,
+    template: "%s",
   },
-  description:
-    "DAR conecta tu negocio con soluciones de conectividad, financiamiento, pagos y recargas. Más de 20 años creciendo junto a los negocios.",
-  keywords: [
-    "DAR Comunicaciones",
-    "chips telefonía",
-    "portabilidades",
-    "Dar Credi",
-    "PagaFast",
-    "raDAR",
-    "distribuidores telefonía México",
-  ],
+  description: seo.home.description,
   openGraph: {
     type: "website",
     locale: "es_MX",
-    siteName: "DAR Comunicaciones",
+    siteName: "DAR",
+    title: seo.home.title,
+    description: seo.home.description,
   },
 };
 

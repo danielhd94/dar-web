@@ -3,23 +3,12 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, User } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import BrandLogo from "@/components/BrandLogo";
-
-const nav = [
-  { label: "Inicio", href: "/" },
-  { label: "Soluciones", href: "/soluciones" },
-  { label: "Conectividad", href: "/soluciones/conectividad" },
-  { label: "Dar Credi", href: "/soluciones/dar-credi" },
-  { label: "PagaFast", href: "/soluciones/pagafast" },
-  { label: "Comunidad", href: "/comunidad-radar" },
-  { label: "FAQ", href: "/preguntas-frecuentes" },
-  { label: "Contacto", href: "/contacto" },
-];
+import { mainNav, permanentActions } from "@/content/site";
 
 function isActive(pathname: string, href: string) {
   if (href === "/") return pathname === "/";
-  if (href === "/soluciones") return pathname === "/soluciones";
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
@@ -43,28 +32,18 @@ export default function Navbar() {
           <div className="flex items-center gap-3 min-h-[4.25rem] py-2">
             <BrandLogo />
 
-            <div className="hidden md:flex flex-col items-start lg:items-center text-[0.72rem] text-slate-500 leading-snug min-w-0">
-              <a href="tel:8003272668" className="hover:text-[#1EA7E0]">
-                Atención <strong className="text-slate-700 font-semibold">800-327-2668</strong>
-              </a>
-              <span className="hidden lg:inline">
-                Cobertura <strong className="text-slate-700 font-semibold">15 estados</strong>
-              </span>
-            </div>
-
-            <div className="hidden lg:flex items-center gap-3 xl:gap-4 ml-auto shrink-0">
+            <div className="hidden lg:flex items-center gap-2 xl:gap-3 ml-auto shrink-0">
               <Link
-                href="/centro-radar"
-                className="flex items-center gap-1.5 text-[0.78rem] text-slate-500 hover:text-[#1EA7E0] transition-colors"
+                href={permanentActions.sesion.href}
+                className="text-[0.78rem] text-slate-500 hover:text-[#1EA7E0] whitespace-nowrap"
               >
-                <User className="w-4 h-4" />
-                Centro raDAR
+                {permanentActions.sesion.label}
               </Link>
-              <Link href="/soluciones" className="btn-secondary !py-2 !px-4 !text-xs !rounded">
-                Afiliarme
+              <Link href={permanentActions.socio.href} className="btn-secondary !py-2 !px-4 !text-xs !rounded">
+                {permanentActions.socio.label}
               </Link>
-              <Link href="/contacto" className="btn-primary !py-2 !px-5 !text-xs !rounded">
-                Contactar
+              <Link href={permanentActions.contacto.href} className="btn-primary !py-2 !px-5 !text-xs !rounded">
+                {permanentActions.contacto.label}
               </Link>
             </div>
 
@@ -82,7 +61,7 @@ export default function Navbar() {
 
         <nav className="hidden lg:block border-t border-slate-100">
           <div className="section-container site-nav flex items-center">
-            {nav.map((item) => (
+            {mainNav.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
@@ -97,46 +76,31 @@ export default function Navbar() {
       </header>
 
       {mobile ? (
-          <div className="site-drawer fixed inset-0 z-[60] overflow-y-auto lg:hidden">
-            <div className="section-container py-4 flex flex-col pb-[max(2rem,env(safe-area-inset-bottom))]">
-              <a href="tel:8003272668" className="py-3 text-sm text-slate-500 border-b border-slate-100">
-                Atención <strong className="text-slate-800">800-327-2668</strong>
-              </a>
-              {nav.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setMobile(false)}
-                  className="min-h-11 flex items-center border-b border-slate-100 text-sm font-medium text-slate-800"
-                >
-                  {item.label}
-                </Link>
-              ))}
-              <div className="pt-6 flex flex-col gap-3">
-                <Link
-                  href="/centro-radar"
-                  onClick={() => setMobile(false)}
-                  className="btn-secondary w-full justify-center"
-                >
-                  Centro raDAR
-                </Link>
-                <Link
-                  href="/soluciones"
-                  onClick={() => setMobile(false)}
-                  className="btn-secondary w-full justify-center"
-                >
-                  Afiliarme
-                </Link>
-                <Link
-                  href="/contacto"
-                  onClick={() => setMobile(false)}
-                  className="btn-primary w-full justify-center"
-                >
-                  Contactar
-                </Link>
-              </div>
+        <div className="site-drawer fixed inset-0 z-[60] overflow-y-auto lg:hidden">
+          <div className="section-container py-4 flex flex-col pb-[max(2rem,env(safe-area-inset-bottom))]">
+            {mainNav.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setMobile(false)}
+                className="min-h-11 flex items-center border-b border-slate-100 text-sm font-medium text-slate-800"
+              >
+                {item.label}
+              </Link>
+            ))}
+            <div className="pt-6 flex flex-col gap-3">
+              <Link href={permanentActions.sesion.href} onClick={() => setMobile(false)} className="btn-secondary w-full justify-center">
+                {permanentActions.sesion.label}
+              </Link>
+              <Link href={permanentActions.socio.href} onClick={() => setMobile(false)} className="btn-secondary w-full justify-center">
+                {permanentActions.socio.label}
+              </Link>
+              <Link href={permanentActions.contacto.href} onClick={() => setMobile(false)} className="btn-primary w-full justify-center">
+                {permanentActions.contacto.label}
+              </Link>
             </div>
           </div>
+        </div>
       ) : null}
     </>
   );

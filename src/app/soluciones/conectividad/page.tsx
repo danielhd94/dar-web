@@ -1,56 +1,23 @@
 import Link from "next/link";
 import PageBanner from "@/components/PageBanner";
-import SectionHeading from "@/components/SectionHeading";
-
-const companies = [
-  { name: "Telcel", desc: "Cobertura nacional. Prepago y portabilidad." },
-  { name: "AT&T", desc: "Planes con redes y navegación." },
-  { name: "Movistar", desc: "Activación inmediata." },
-  { name: "Unefon", desc: "Prepago diario." },
-  { name: "Bait", desc: "Datos de alto volumen." },
-  { name: "Virgin Mobile", desc: "Planes digitales." },
-];
-
-const offers = [
-  "Chips Telcel, AT&T y Movistar listos para activar",
-  "Comisión por cada portabilidad",
-  "Recargas con acreditación inmediata",
-  "Material de mostrador",
-];
-
-const receives = [
-  { title: "Ejecutivo de ruta", desc: "Visitas para resurtir stock." },
-  { title: "Mesa de ayuda", desc: "Teléfono y WhatsApp." },
-  { title: "Guías de venta", desc: "Cómo colocar chips en mostrador." },
-  { title: "Material POP", desc: "Exhibidores y lonas autorizadas." },
-];
-
-const steps = [
-  { title: "Registra tu tienda", desc: "Nombre y ubicación." },
-  { title: "Visita del asesor", desc: "Primer paquete de chips y material." },
-  { title: "Empieza a vender", desc: "Activa líneas y cobra comisión." },
-];
-
-const requirements = [
-  "Punto de venta activo",
-  "INE o pasaporte del titular",
-  "Comprobante de domicilio del local",
-  "Celular con internet para activaciones",
-];
+import { PillarCard, StepRow } from "@/components/visual";
+import { Headphones, Package, Radio, Smartphone, Store, Wifi } from "lucide-react";
 
 export default function ConectividadPage() {
   return (
-    <div className="min-h-screen bg-white text-[#1B2A4A]">
+    <div className="min-h-screen bg-[#F4F5F7] text-[#1B2A4A]">
       <PageBanner
-        title="Chips y telefonía multimarca"
-        subtitle="Telcel, AT&T y Movistar con inventario en ruta."
+        title="Conectividad para tu punto de venta"
+        subtitle="Vende chips, portabilidades y recargas con el respaldo de un equipo que te acompaña para activar, vender y crecer."
+        bullets={["Chips", "Portabilidades", "Recargas"]}
+        scene="chip"
         actions={
           <div className="flex flex-wrap gap-3">
-            <Link href="/contacto" id="conectividad-cta-distribuidor" className="bg-white text-[#1EA7E0] font-display font-bold text-sm px-6 py-2.5 rounded">
-              Ser distribuidor
+            <Link href="/contacto" className="bg-white text-[#1EA7E0] font-display font-bold text-sm px-6 py-2.5 rounded">
+              Quiero ser distribuidor
             </Link>
             <Link href="/contacto" className="border border-white/70 text-white font-display font-semibold text-sm px-6 py-2.5 rounded">
-              Solicitar visita
+              Hablar con un asesor
             </Link>
           </div>
         }
@@ -58,74 +25,44 @@ export default function ConectividadPage() {
 
       <section className="py-14">
         <div className="section-container">
-          <SectionHeading title="Marcas" subtitle="Un solo proveedor para lo que tus clientes ya piden." />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {companies.map((c) => (
-              <div key={c.name} className="border border-slate-100 p-5">
-                <h3 className="font-display font-bold text-base text-[#1B2A4A] mb-1">{c.name}</h3>
-                <p className="text-sm text-slate-500">{c.desc}</p>
-              </div>
-            ))}
+          <h2 className="font-display font-black text-2xl tracking-tight mb-2">Lo que ofreces</h2>
+          <p className="text-sm text-slate-500 mb-6 max-w-xl">
+            El portafolio de compañías se confirma con un ejecutivo según zona y vigencia.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12">
+            <PillarCard title="Chips" desc="Distintas compañías de telefonía, según disponibilidad." icon={Wifi} />
+            <PillarCard title="Portabilidades" desc="Ayuda a tus clientes a cambiar de compañía desde tu negocio." icon={Smartphone} />
+            <PillarCard title="Recargas" desc="Tiempo aire de uso cotidiano para generar visitas frecuentes." icon={Package} />
           </div>
-        </div>
-      </section>
-
-      <section className="py-14 border-t border-slate-100">
-        <div className="section-container grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div>
-            <SectionHeading title="Qué ofreces en mostrador" />
-            <ul className="divide-y divide-slate-100 text-sm text-slate-600">
-              {offers.map((o) => (
-                <li key={o} className="py-2.5">
-                  {o}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <SectionHeading title="Requisitos de alta" />
-            <ul className="divide-y divide-slate-100 text-sm text-slate-600 mb-6">
-              {requirements.map((r) => (
-                <li key={r} className="py-2.5">
-                  {r}
-                </li>
-              ))}
-            </ul>
-            <Link href="/contacto" className="btn-primary !text-xs !rounded">
-              Solicitar alta
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-14 border-t border-slate-100">
-        <div className="section-container">
-          <SectionHeading title="Qué recibes" />
+          <h2 className="font-display font-black text-2xl tracking-tight mb-2">Lo que recibes</h2>
+          <p className="text-sm text-slate-500 mb-6 max-w-xl">
+            No se trata sólo de tener chips: se trata de hacerlos trabajar para tu negocio.
+          </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {receives.map((r) => (
-              <div key={r.title} className="border border-slate-100 p-5">
-                <h3 className="font-display font-bold text-sm text-[#1B2A4A] mb-1">{r.title}</h3>
-                <p className="text-sm text-slate-500">{r.desc}</p>
-              </div>
-            ))}
+            <PillarCard title="Ejecutivo comercial" desc="Acompañamiento personalizado en tu zona." icon={Store} />
+            <PillarCard title="Mesa de control" desc="Soporte para procesos y activaciones." icon={Headphones} />
+            <PillarCard title="Capacitación" desc="Herramientas para mejorar ventas y altas." icon={Package} />
+            <PillarCard title="Comunidad raDAR" desc="Beneficios, materiales y canales de soporte." icon={Radio} />
           </div>
         </div>
       </section>
 
-      <section className="py-14 border-t border-slate-100">
-        <div className="section-container max-w-2xl">
-          <SectionHeading title="Cómo empezar" />
-          <ol className="divide-y divide-slate-100 mb-8">
-            {steps.map((s, i) => (
-              <li key={s.title} className="py-4">
-                <p className="text-xs text-slate-400 mb-0.5">{i + 1}</p>
-                <h3 className="font-display font-bold text-sm text-[#1B2A4A]">{s.title}</h3>
-                <p className="text-sm text-slate-500">{s.desc}</p>
-              </li>
-            ))}
-          </ol>
-          <Link href="/contacto" className="btn-primary !text-xs !rounded">
-            Iniciar alta
+      <section className="py-14 bg-white">
+        <div className="section-container">
+          <h2 className="font-display font-black text-2xl tracking-tight mb-2">Cómo comenzar</h2>
+          <p className="text-sm text-slate-500 mb-6 max-w-xl">
+            Ideal para tiendas, farmacias, accesorios, distribuidores y otros micronegocios.
+          </p>
+          <StepRow
+            items={[
+              { title: "Cuéntanos tu negocio", desc: "Completa el formulario con tus datos y ubicación." },
+              { title: "Conoce la opción", desc: "Un ejecutivo revisa tu perfil y te explica el modelo." },
+              { title: "Activa tu punto", desc: "Recibe orientación para iniciar la operación." },
+              { title: "Acompañamiento", desc: "Capacitación, materiales y seguimiento comercial." },
+            ]}
+          />
+          <Link href="/contacto" className="btn-primary !text-xs !rounded mt-8 inline-flex">
+            Quiero ser distribuidor
           </Link>
         </div>
       </section>

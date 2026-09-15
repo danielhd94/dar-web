@@ -5,10 +5,10 @@ import Link from "next/link";
 import PageBanner from "@/components/PageBanner";
 
 const modules = [
-  { title: "Promociones del mes", desc: "Comisiones extraordinarias de tu zona." },
-  { title: "Bonos raDAR", desc: "Puntos y fechas de dispersión." },
-  { title: "Materiales y guías", desc: "POP digital y fichas de producto." },
-  { title: "Tu asesor", desc: "Mensajes o visita a tu local." },
+  { title: "Comunicados y novedades", desc: "Información relevante para tu operación." },
+  { title: "Mis beneficios", desc: "Promociones y ventajas de tu perfil." },
+  { title: "Capacitación y materiales", desc: "Guías y contenidos de apoyo." },
+  { title: "Soporte y ejecutivo asignado", desc: "Canales para resolver dudas." },
 ];
 
 const portalOptions = [
@@ -30,24 +30,26 @@ export default function CentroRadarPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-[#1B2A4A]">
+    <div className="min-h-screen bg-[#F4F5F7] text-[#1B2A4A]">
       <PageBanner
         title="Centro raDAR"
-        subtitle="Comisiones, promociones y contacto con tu asesor."
+        subtitle="Consulta comunicados, beneficios, materiales, capacitación y canales de soporte en un solo lugar."
+        bullets={["Comunicados", "Beneficios", "Materiales y soporte"]}
+        scene="radar"
       />
 
       <section className="py-14">
-        <div className="section-container grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div className="divide-y divide-slate-100">
+        <div className="section-container grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 content-start">
             {modules.map((m) => (
-              <div key={m.title} className="py-4">
-                <h2 className="font-display font-bold text-sm">{m.title}</h2>
+              <div key={m.title} className="bg-white border border-slate-100 rounded-md p-5 min-h-[7rem]">
+                <h2 className="font-display font-bold text-sm mb-1">{m.title}</h2>
                 <p className="text-sm text-slate-500">{m.desc}</p>
               </div>
             ))}
           </div>
 
-          <div className="border border-slate-100 p-6">
+          <div className="bg-white border border-slate-100 rounded-md p-6">
             {logged ? (
               <div>
                 <h2 className="font-display font-bold text-xl mb-2">Sesión iniciada</h2>
@@ -105,14 +107,15 @@ export default function CentroRadarPage() {
                     />
                   </div>
                   <button type="submit" className="btn-primary w-full !text-xs !rounded">
-                    Ingresar
+                    Iniciar sesión
                   </button>
                 </form>
                 <p className="text-xs text-slate-400 mt-4">
-                  ¿Aún no tienes acceso?{" "}
+                  ¿Todavía no tienes acceso? Solicítalo con tu ejecutivo o{" "}
                   <Link href="/contacto" className="text-[#1EA7E0]">
-                    Solicita tu alta
+                    comunícate con soporte
                   </Link>
+                  .
                 </p>
               </>
             )}

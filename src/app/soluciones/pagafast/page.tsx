@@ -1,38 +1,20 @@
 import Link from "next/link";
 import PageBanner from "@/components/PageBanner";
-import SectionHeading from "@/components/SectionHeading";
-
-const offers = [
-  "CFE, agua y gas",
-  "Telmex, Izzi y Totalplay",
-  "Recargas de todas las compañías",
-  "TAG Pase, Televía y pines",
-];
-
-const benefits = [
-  { title: "+100 servicios", desc: "Gobierno y privados en un solo lugar." },
-  { title: "Más visitas", desc: "Los recibos traen gente cada semana." },
-  { title: "Comisión al instante", desc: "Por cada recibo y recarga." },
-  { title: "24/7", desc: "Celular, tablet o computadora." },
-];
-
-const steps = [
-  { title: "Registra tu comercio", desc: "Alta de cuenta en minutos." },
-  { title: "Abona saldo", desc: "El monto que destines a operar." },
-  { title: "Cobra servicios", desc: "Escanea o captura la referencia." },
-  { title: "Retira comisiones", desc: "Desde tu panel." },
-];
+import { PillarCard, StepRow } from "@/components/visual";
+import { Banknote, CreditCard, RefreshCw, Smartphone } from "lucide-react";
 
 export default function PagaFastPage() {
   return (
-    <div className="min-h-screen bg-white text-[#1B2A4A]">
+    <div className="min-h-screen bg-[#F4F5F7] text-[#1B2A4A]">
       <PageBanner
-        title="Terminal PagaFast"
-        subtitle="CFE, agua, telefonía y recargas. Comisión por cada ticket."
+        title="Un centro de servicios en tu negocio"
+        subtitle="Con PagaFast ofreces pagos, recargas y productos digitales de uso cotidiano, y generas ingresos adicionales."
+        bullets={["Pagos", "Recargas", "Productos digitales"]}
+        scene="pay"
         actions={
           <div className="flex flex-wrap gap-3">
-            <Link href="/contacto" id="pagafast-cta-activar" className="bg-white text-[#1EA7E0] font-display font-bold text-sm px-6 py-2.5 rounded">
-              Activar
+            <Link href="/contacto" className="bg-white text-[#1EA7E0] font-display font-bold text-sm px-6 py-2.5 rounded">
+              Quiero activar PagaFast
             </Link>
             <Link href="#como-funciona" className="border border-white/70 text-white font-display font-semibold text-sm px-6 py-2.5 rounded">
               Cómo funciona
@@ -42,42 +24,36 @@ export default function PagaFastPage() {
       />
 
       <section className="py-14">
-        <div className="section-container grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div>
-            <SectionHeading title="Qué puedes cobrar" />
-            <ul className="divide-y divide-slate-100 text-sm text-slate-600">
-              {offers.map((o) => (
-                <li key={o} className="py-2.5">
-                  {o}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {benefits.map((b) => (
-              <div key={b.title} className="border border-slate-100 p-5">
-                <h3 className="font-display font-bold text-sm mb-1">{b.title}</h3>
-                <p className="text-sm text-slate-500">{b.desc}</p>
-              </div>
-            ))}
+        <div className="section-container">
+          <h2 className="font-display font-black text-2xl tracking-tight mb-2">Qué puedes ofrecer</h2>
+          <p className="text-sm text-slate-500 mb-6 max-w-xl">
+            El catálogo vigente se confirma al activar tu acceso.
+          </p>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            <PillarCard title="Pago de servicios" desc="Luz, agua y otros pagos cotidianos." icon={Banknote} />
+            <PillarCard title="Recargas" desc="Tiempo aire que atrae visitas frecuentes." icon={RefreshCw} />
+            <PillarCard title="Pines y digitales" desc="Productos digitales desde el mismo punto." icon={Smartphone} />
+            <PillarCard title="Una sola plataforma" desc="Operas distintos servicios sin cambiar de giro." icon={CreditCard} />
           </div>
         </div>
       </section>
 
-      <section id="como-funciona" className="py-14 border-t border-slate-100">
-        <div className="section-container max-w-2xl">
-          <SectionHeading title="Cómo empezar" subtitle="Puedes operar el mismo día del registro." />
-          <ol className="divide-y divide-slate-100 mb-8">
-            {steps.map((s, i) => (
-              <li key={s.title} className="py-4">
-                <p className="text-xs text-slate-400">{i + 1}</p>
-                <h3 className="font-display font-bold text-sm">{s.title}</h3>
-                <p className="text-sm text-slate-500">{s.desc}</p>
-              </li>
-            ))}
-          </ol>
-          <Link href="/contacto" id="pagafast-cta-final" className="btn-primary !text-xs !rounded">
-            Activar en mi tienda
+      <section id="como-funciona" className="py-14 bg-white">
+        <div className="section-container">
+          <h2 className="font-display font-black text-2xl tracking-tight mb-2">Cómo comenzar</h2>
+          <p className="text-sm text-slate-500 mb-6 max-w-xl">
+            Los requisitos dependen del tipo de negocio y del modelo vigente.
+          </p>
+          <StepRow
+            items={[
+              { title: "Registra tu negocio", desc: "Comparte tus datos y ubicación." },
+              { title: "Activa tu acceso", desc: "Conoce requisitos y el proceso de alta." },
+              { title: "Recibe orientación", desc: "Aprende a usar la plataforma con soporte." },
+              { title: "Ofrece servicios", desc: "Atiende a tus clientes y genera ingresos extra." },
+            ]}
+          />
+          <Link href="/contacto" className="btn-primary !text-xs !rounded mt-8 inline-flex">
+            Quiero activar PagaFast
           </Link>
         </div>
       </section>

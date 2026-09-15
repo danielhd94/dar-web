@@ -1,82 +1,59 @@
 import Link from "next/link";
 import PageBanner from "@/components/PageBanner";
-import SectionHeading from "@/components/SectionHeading";
-
-const benefits = [
-  { title: "Bonos trimestrales", desc: "Por chips, activaciones y colocación de equipos." },
-  { title: "Capacitaciones", desc: "Venta en mostrador y uso de plataformas." },
-  { title: "Ejecutivo asignado", desc: "Resurtido y dudas en tu ruta." },
-  { title: "Material sin costo", desc: "Exhibidores, lonas y señalética." },
-  { title: "Eventos", desc: "Encuentros de la red de socios." },
-  { title: "Soporte", desc: "Línea dedicada para puntos afiliados." },
-];
-
-const steps = [
-  { title: "Solicita tu afiliación", desc: "Formulario o 800-327-2668." },
-  { title: "Visita de tu asesor", desc: "Kit de bienvenida y capacitación en tienda." },
-  { title: "Acceso al portal", desc: "Comisiones, pedidos y promociones." },
-];
+import { PillarCard, SplitPanel, StepRow } from "@/components/visual";
+import { Gift, GraduationCap, Headphones, Megaphone } from "lucide-react";
 
 export default function ComunidadRadarPage() {
   return (
-    <div className="min-h-screen bg-white text-[#1B2A4A]">
+    <div className="min-h-screen bg-[#F4F5F7] text-[#1B2A4A]">
       <PageBanner
-        title="Comunidad raDAR"
-        subtitle="Incentivos, material y asesoría para puntos de venta afiliados."
+        title="Una comunidad para crecer acompañado"
+        subtitle="raDAR conecta a los socios de DAR con beneficios, información, capacitación y soporte."
+        bullets={["Beneficios", "Capacitación", "Soporte"]}
+        scene="radar"
         actions={
-          <Link href="/contacto" className="bg-white text-[#1EA7E0] font-display font-bold text-sm px-6 py-2.5 rounded">
-            Unirme
-          </Link>
+          <div className="flex flex-wrap gap-3">
+            <Link href="/contacto" className="bg-white text-[#1EA7E0] font-display font-bold text-sm px-6 py-2.5 rounded">
+              Quiero unirme
+            </Link>
+            <Link href="/centro-radar" className="border border-white/70 text-white font-display font-semibold text-sm px-6 py-2.5 rounded">
+              Soy socio / Entrar
+            </Link>
+          </div>
         }
       />
 
       <section className="py-14">
-        <div className="section-container grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="border border-slate-100 p-6">
-            <h3 className="font-display font-bold text-lg mb-2">Conocer y afiliarme</h3>
-            <p className="text-sm text-slate-500 mb-4">Incentivos, historias de socios y capacitaciones.</p>
-            <Link href="/contacto" className="btn-primary !text-xs !rounded">
-              Registrar mi negocio
-            </Link>
-          </div>
-          <div className="border border-slate-100 p-6">
-            <h3 className="font-display font-bold text-lg mb-2">Ya soy socio</h3>
-            <p className="text-sm text-slate-500 mb-4">Comisiones, visitas y recursos de venta.</p>
-            <Link href="/centro-radar" className="btn-secondary !text-xs !rounded">
-              Entrar al portal
-            </Link>
-          </div>
+        <div className="section-container grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <PillarCard title="Comunicados" desc="Novedades relevantes para tu operación." icon={Megaphone} />
+          <PillarCard title="Beneficios" desc="Promociones y ventajas según tu perfil." icon={Gift} />
+          <PillarCard title="Capacitación" desc="Materiales para vender mejor cada solución." icon={GraduationCap} />
+          <PillarCard title="Soporte" desc="Canal con tu ejecutivo y mesa de ayuda." icon={Headphones} />
         </div>
       </section>
 
-      <section className="py-14 border-t border-slate-100">
+      <SplitPanel scene="radar" title="Historias de socios" href="/comunidad-radar/historias" cta="Ver historias">
+        <p className="text-sm text-slate-500 max-w-lg leading-relaxed">
+          Publicaremos testimonios autorizados con nombre, localidad y solución utilizada.
+        </p>
+      </SplitPanel>
+
+      <section className="py-14 bg-white">
         <div className="section-container">
-          <SectionHeading title="Beneficios" />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {benefits.map((b) => (
-              <div key={b.title} className="border border-slate-100 p-5">
-                <h3 className="font-display font-bold text-sm mb-1">{b.title}</h3>
-                <p className="text-sm text-slate-500">{b.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-14 border-t border-slate-100">
-        <div className="section-container max-w-2xl">
-          <SectionHeading title="Cómo integrarte" />
-          <ol className="divide-y divide-slate-100 mb-8">
-            {steps.map((s, i) => (
-              <li key={s.title} className="py-4">
-                <p className="text-xs text-slate-400">{i + 1}</p>
-                <h3 className="font-display font-bold text-sm">{s.title}</h3>
-                <p className="text-sm text-slate-500">{s.desc}</p>
-              </li>
-            ))}
-          </ol>
-          <Link href="/contacto" className="btn-primary !text-xs !rounded">
-            Registrarme
+          <h2 className="font-display font-black text-2xl tracking-tight mb-2">Cómo formar parte</h2>
+          <p className="text-sm text-slate-500 mb-6 max-w-xl">
+            El acceso a raDAR forma parte de tu relación como socio de DAR.
+          </p>
+          <StepRow
+            items={[
+              { title: "Cuéntanos tu negocio", desc: "Indica la solución que te interesa." },
+              { title: "Conoce el modelo", desc: "Completa el proceso de alta." },
+              { title: "Activa tu relación", desc: "Inicia operación con acompañamiento." },
+              { title: "Entra a la comunidad", desc: "Recibe beneficios y canales de soporte." },
+            ]}
+          />
+          <Link href="/contacto" className="btn-primary !text-xs !rounded mt-8 inline-flex">
+            Quiero unirme
           </Link>
         </div>
       </section>

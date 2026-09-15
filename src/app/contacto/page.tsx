@@ -3,7 +3,6 @@
 import { useState, type ReactNode } from "react";
 import Link from "next/link";
 import PageBanner from "@/components/PageBanner";
-import SectionHeading from "@/components/SectionHeading";
 
 interface FormState {
   nombre: string;
@@ -12,18 +11,20 @@ interface FormState {
   email: string;
   cp: string;
   estado: string;
+  municipio: string;
   motivo: string;
   mensaje: string;
   privacidad: boolean;
 }
 
 const motivos = [
-  { id: "conectividad", label: "Conectividad (chips y portabilidades)" },
-  { id: "dar-credi", label: "Dar Credi (celulares a crédito)" },
-  { id: "pagafast", label: "PagaFast (cobro de servicios)" },
-  { id: "radar", label: "Comunidad raDAR" },
-  { id: "soporte", label: "Ya soy socio y necesito atención" },
-  { id: "otro", label: "Otra consulta" },
+  { id: "conectividad", label: "Quiero vender chips, portabilidades o recargas" },
+  { id: "dar-credi-socio", label: "Quiero ofrecer Dar Credi en mi negocio" },
+  { id: "dar-credi-compra", label: "Quiero comprar un equipo con Dar Credi" },
+  { id: "pagafast", label: "Quiero activar PagaFast" },
+  { id: "radar", label: "Quiero unirme a raDAR" },
+  { id: "soporte", label: "Ya soy socio y necesito soporte" },
+  { id: "otro", label: "Tengo otra consulta" },
 ];
 
 const estados = [
@@ -64,6 +65,7 @@ export default function ContactoPage() {
     email: "",
     cp: "",
     estado: "",
+    municipio: "",
     motivo: "conectividad",
     mensaje: "",
     privacidad: false,
@@ -84,6 +86,7 @@ export default function ContactoPage() {
     if (!cp) next.cp = "Ingresa el código postal";
     else if (cp.length !== 5) next.cp = "El CP debe tener 5 dígitos";
     if (!formData.estado) next.estado = "Selecciona el estado";
+    if (!formData.municipio.trim()) next.municipio = "Ingresa el municipio";
     if (!formData.privacidad) next.privacidad = "Acepta el aviso de privacidad";
     return next;
   })();
@@ -103,6 +106,7 @@ export default function ContactoPage() {
       email: true,
       cp: true,
       estado: true,
+      municipio: true,
       motivo: true,
       privacidad: true,
     });
@@ -113,20 +117,22 @@ export default function ContactoPage() {
     `field-input${show(field) ? " border-slate-400" : ""}`;
 
   return (
-    <div className="min-h-screen bg-white text-[#1B2A4A]">
+    <div className="min-h-screen bg-[#F4F5F7] text-[#1B2A4A]">
       <PageBanner
-        title="Contacto"
-        subtitle="Un ejecutivo de tu zona te contacta para armar la propuesta de tu local."
+        title="Hablemos de tu negocio"
+        subtitle="Selecciona el motivo y comparte tus datos. Así conectamos tu consulta con el equipo adecuado."
+        bullets={["Elige el motivo", "Comparte tu zona", "Te conectamos con el equipo"]}
+        scene="team"
       />
 
       <section className="py-14">
         <div className="section-container max-w-4xl">
           {submitted ? (
             <div>
-              <SectionHeading
-                title="Solicitud enviada"
-                subtitle={`Recibimos los datos de ${formData.negocio}. Te contactaremos al ${formData.telefono} en menos de 24 horas hábiles.`}
-              />
+              <h2 className="font-display font-black text-2xl tracking-tight mb-2">Solicitud enviada</h2>
+              <p className="text-sm text-slate-500 mb-2">
+                Recibimos tu solicitud y la dirigiremos al equipo correspondiente.
+              </p>
               <p className="text-sm text-slate-400 mb-6">También puedes llamar al 800-327-2668, lunes a sábado, 9:00 a 19:00.</p>
               <button
                 type="button"
@@ -140,9 +146,7 @@ export default function ContactoPage() {
               </button>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} noValidate>
-              <SectionHeading title="Datos de tu negocio" subtitle="Los usamos solo para asignarte un ejecutivo de zona." />
-
+            <form onSubmit={handleSubmit} noValidate className="bg-white border border-slate-100 rounded-md p-6 sm:p-8">
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
                 <Field id="contact-nombre" label="Nombre" error={show("nombre")}>
                   <input
@@ -213,6 +217,18 @@ export default function ContactoPage() {
                     ))}
                   </select>
                 </Field>
+                <Field id="contact-municipio" label="Municipio" error={show("municipio")}>
+                  <input
+                    id="contact-municipio"
+                    type="text"
+                    required
+                    value={formData.municipio}
+                    onChange={(e) => setField("municipio", e.target.value)}
+                    onBlur={() => setTouched((t) => ({ ...t, municipio: true }))}
+                    placeholder="Municipio"
+                    className={inputCls("municipio")}
+                  />
+                </Field>
                 <Field id="contact-cp" label="Código postal" error={show("cp")}>
                   <input
                     id="contact-cp"
@@ -227,7 +243,7 @@ export default function ContactoPage() {
                     className={inputCls("cp")}
                   />
                 </Field>
-                <Field id="contact-motivo" label="Interés">
+                <Field id="contact-motivo" label="Motivo de contacto">
                   <select
                     id="contact-motivo"
                     value={formData.motivo}
@@ -255,7 +271,7 @@ export default function ContactoPage() {
 
               <div className="pt-6 flex flex-col sm:flex-row sm:items-center gap-4">
                 <button id="contact-submit" type="submit" className="btn-primary !py-2.5 !px-8 !text-xs !rounded w-full sm:w-auto">
-                  Enviar
+                  Enviar solicitud
                 </button>
                 <label className="flex items-start gap-2 text-[0.7rem] text-slate-400 max-w-xl">
                   <input
