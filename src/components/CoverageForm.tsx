@@ -22,7 +22,7 @@ export default function CoverageForm() {
       }}
       className="space-y-3.5"
     >
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
         <div>
           <label className="field-label" htmlFor="cov-cp">
             Código postal
@@ -48,7 +48,7 @@ export default function CoverageForm() {
         </button>
         <span className="text-[0.7rem] text-slate-400">
           Al enviar aceptas el{" "}
-          <Link href="/aviso-de-privacidad" className="text-[#1EA7E0] hover:underline">
+          <Link href="/aviso-de-privacidad" className="text-navy hover:underline">
             aviso de privacidad
           </Link>
           .

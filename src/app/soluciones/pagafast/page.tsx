@@ -5,7 +5,7 @@ import { Banknote, CreditCard, RefreshCw, Smartphone } from "lucide-react";
 
 export default function PagaFastPage() {
   return (
-    <div className="min-h-screen bg-[#F4F5F7] text-[#1B2A4A]">
+    <div className="page-shell">
       <PageBanner
         title="Un centro de servicios en tu negocio"
         subtitle="Con PagaFast ofreces pagos, recargas y productos digitales de uso cotidiano, y generas ingresos adicionales."
@@ -13,7 +13,7 @@ export default function PagaFastPage() {
         scene="pay"
         actions={
           <div className="flex flex-wrap gap-3">
-            <Link href="/contacto" className="bg-white text-[#1EA7E0] font-display font-bold text-sm px-6 py-2.5 rounded">
+            <Link href="/contacto" className="cta-on-dark">
               Quiero activar PagaFast
             </Link>
             <Link href="#como-funciona" className="border border-white/70 text-white font-display font-semibold text-sm px-6 py-2.5 rounded">

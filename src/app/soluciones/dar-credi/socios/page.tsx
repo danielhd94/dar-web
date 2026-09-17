@@ -5,14 +5,14 @@ import { GraduationCap, Package, TrendingUp, Users } from "lucide-react";
 
 export default function DarCrediSociosPage() {
   return (
-    <div className="min-h-screen bg-[#F4F5F7] text-[#1B2A4A]">
+    <div className="page-shell">
       <PageBanner
         title="Financiamiento como herramienta de venta"
         subtitle="Ofrece equipos a más clientes, abre nuevas oportunidades de compra y fortalece la actividad de tu punto de venta."
         bullets={["Más clientes", "Más ticket", "Acompañamiento"]}
         scene="phone"
         actions={
-          <Link href="/contacto" className="bg-white text-[#1EA7E0] font-display font-bold text-sm px-6 py-2.5 rounded">
+          <Link href="/contacto" className="cta-on-dark">
             Quiero ser socio comercial
           </Link>
         }

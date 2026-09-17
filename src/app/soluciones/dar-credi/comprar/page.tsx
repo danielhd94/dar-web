@@ -4,14 +4,14 @@ import { StepRow } from "@/components/visual";
 
 export default function DarCrediComprarPage() {
   return (
-    <div className="min-h-screen bg-[#F4F5F7] text-[#1B2A4A]">
+    <div className="page-shell">
       <PageBanner
         title="El equipo que quieres, más cerca"
         subtitle="Conoce opciones de tecnología y financiamiento con pagos accesibles y condiciones explicadas con claridad."
         bullets={["Asesoría clara", "Pagos accesibles", "Sujeto a evaluación"]}
         scene="phone"
         actions={
-          <Link href="/contacto" className="bg-white text-[#1EA7E0] font-display font-bold text-sm px-6 py-2.5 rounded">
+          <Link href="/contacto" className="cta-on-dark">
             Encontrar un punto de venta
           </Link>
         }

@@ -17,11 +17,23 @@ export default function Navbar() {
   const [mobile, setMobile] = useState(false);
 
   useEffect(() => {
+    setMobile(false);
+  }, [pathname]);
+
+  useEffect(() => {
     document.body.classList.toggle("nav-open", mobile);
     return () => {
       document.body.classList.remove("nav-open");
     };
   }, [mobile]);
+
+  useEffect(() => {
+    const onResize = () => {
+      if (window.matchMedia("(min-width: 1024px)").matches) setMobile(false);
+    };
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
 
   return (
     <>
@@ -29,13 +41,13 @@ export default function Navbar() {
         className={`site-header sticky top-0 left-0 right-0 bg-white border-b border-slate-100 ${mobile ? "z-[70]" : "z-50"}`}
       >
         <div className="section-container">
-          <div className="flex items-center gap-3 min-h-[4.25rem] py-2">
+          <div className="flex items-center gap-3 min-h-[4.5rem] sm:min-h-[5rem] py-2">
             <BrandLogo />
 
             <div className="hidden lg:flex items-center gap-2 xl:gap-3 ml-auto shrink-0">
               <Link
                 href={permanentActions.sesion.href}
-                className="text-[0.78rem] text-slate-500 hover:text-[#1EA7E0] whitespace-nowrap"
+                className="text-[0.78rem] text-slate-500 hover:text-navy whitespace-nowrap min-h-11 inline-flex items-center"
               >
                 {permanentActions.sesion.label}
               </Link>
@@ -76,14 +88,14 @@ export default function Navbar() {
       </header>
 
       {mobile ? (
-        <div className="site-drawer fixed inset-0 z-[60] overflow-y-auto lg:hidden">
+        <div className="site-drawer fixed z-[60] overflow-y-auto lg:hidden">
           <div className="section-container py-4 flex flex-col pb-[max(2rem,env(safe-area-inset-bottom))]">
             {mainNav.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={() => setMobile(false)}
-                className="min-h-11 flex items-center border-b border-slate-100 text-sm font-medium text-slate-800"
+                className="min-h-12 flex items-center border-b border-slate-100 text-sm font-medium text-slate-800"
               >
                 {item.label}
               </Link>

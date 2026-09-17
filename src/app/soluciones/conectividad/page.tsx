@@ -5,7 +5,7 @@ import { Headphones, Package, Radio, Smartphone, Store, Wifi } from "lucide-reac
 
 export default function ConectividadPage() {
   return (
-    <div className="min-h-screen bg-[#F4F5F7] text-[#1B2A4A]">
+    <div className="page-shell">
       <PageBanner
         title="Conectividad para tu punto de venta"
         subtitle="Vende chips, portabilidades y recargas con el respaldo de un equipo que te acompaña para activar, vender y crecer."
@@ -13,7 +13,7 @@ export default function ConectividadPage() {
         scene="chip"
         actions={
           <div className="flex flex-wrap gap-3">
-            <Link href="/contacto" className="bg-white text-[#1EA7E0] font-display font-bold text-sm px-6 py-2.5 rounded">
+            <Link href="/contacto" className="cta-on-dark">
               Quiero ser distribuidor
             </Link>
             <Link href="/contacto" className="border border-white/70 text-white font-display font-semibold text-sm px-6 py-2.5 rounded">
@@ -29,7 +29,7 @@ export default function ConectividadPage() {
           <p className="text-sm text-slate-500 mb-6 max-w-xl">
             El portafolio de compañías se confirma con un ejecutivo según zona y vigencia.
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
             <PillarCard title="Chips" desc="Distintas compañías de telefonía, según disponibilidad." icon={Wifi} />
             <PillarCard title="Portabilidades" desc="Ayuda a tus clientes a cambiar de compañía desde tu negocio." icon={Smartphone} />
             <PillarCard title="Recargas" desc="Tiempo aire de uso cotidiano para generar visitas frecuentes." icon={Package} />

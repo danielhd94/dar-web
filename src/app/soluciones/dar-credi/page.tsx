@@ -4,7 +4,7 @@ import { OfferCard } from "@/components/visual";
 
 export default function DarCrediPage() {
   return (
-    <div className="min-h-screen bg-[#F4F5F7] text-[#1B2A4A]">
+    <div className="page-shell">
       <PageBanner
         title="Tecnología más cerca"
         subtitle="Dar Credi facilita el acceso a equipos y ayuda a los negocios a convertir esa posibilidad en nuevas ventas."
@@ -27,7 +27,6 @@ export default function DarCrediPage() {
             desc="Incorpora una herramienta de venta para llegar a más clientes e incrementar tu ticket."
             href="/soluciones/dar-credi/socios"
             cta="Ser socio comercial"
-            accent="#FF5E6C"
           />
         </div>
       </section>

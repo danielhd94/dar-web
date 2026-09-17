@@ -30,7 +30,7 @@ export default function CentroRadarPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F4F5F7] text-[#1B2A4A]">
+    <div className="page-shell">
       <PageBanner
         title="Centro raDAR"
         subtitle="Consulta comunicados, beneficios, materiales, capacitación y canales de soporte en un solo lugar."
@@ -62,7 +62,7 @@ export default function CentroRadarPage() {
               <>
                 <h2 className="font-display font-bold text-lg mb-1">Acceso</h2>
                 <p className="text-sm text-slate-400 mb-5">Elige el sistema e ingresa.</p>
-                <div className="grid grid-cols-2 gap-2 mb-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-5">
                   {portalOptions.map((opt) => (
                     <button
                       key={opt.id}
@@ -70,8 +70,8 @@ export default function CentroRadarPage() {
                       onClick={() => setSelectedPortal(opt.id)}
                       className={`p-3 border text-left text-sm min-w-0 min-h-11 ${
                         selectedPortal === opt.id
-                          ? "border-[#1EA7E0] text-[#1EA7E0]"
-                          : "border-slate-100 text-[#1B2A4A]"
+                          ? "border-primary text-navy"
+                          : "border-slate-100 text-navy"
                       }`}
                     >
                       <span className="font-semibold block">{opt.label}</span>
@@ -112,7 +112,7 @@ export default function CentroRadarPage() {
                 </form>
                 <p className="text-xs text-slate-400 mt-4">
                   ¿Todavía no tienes acceso? Solicítalo con tu ejecutivo o{" "}
-                  <Link href="/contacto" className="text-[#1EA7E0]">
+                  <Link href="/contacto" className="text-navy">
                     comunícate con soporte
                   </Link>
                   .

@@ -46,7 +46,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" className={`${inter.variable} ${plusJakarta.variable}`} suppressHydrationWarning>
-      <body className="bg-white text-zinc-950 font-sans antialiased" suppressHydrationWarning>
+      <body className="bg-cream text-navy font-sans antialiased" suppressHydrationWarning>
         <Navbar />
         <main>{children}</main>
         <ConsultTab />

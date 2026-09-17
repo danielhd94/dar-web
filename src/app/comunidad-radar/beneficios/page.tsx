@@ -5,14 +5,14 @@ import { Gift, GraduationCap, Headphones, Megaphone, Store } from "lucide-react"
 
 export default function BeneficiosPage() {
   return (
-    <div className="min-h-screen bg-[#F4F5F7] text-[#1B2A4A]">
+    <div className="page-shell">
       <PageBanner
         title="Beneficios para socios"
         subtitle="Ser parte de raDAR te conecta con herramientas, información y apoyos para fortalecer tu actividad."
         bullets={["Información", "Capacitación", "Acompañamiento"]}
         scene="radar"
         actions={
-          <Link href="/contacto" className="bg-white text-[#1EA7E0] font-display font-bold text-sm px-6 py-2.5 rounded">
+          <Link href="/contacto" className="cta-on-dark">
             Quiero formar parte
           </Link>
         }

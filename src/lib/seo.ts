@@ -14,10 +14,10 @@ export const SITE_URL = resolveSiteUrl();
 export const SITE_NAME = "DAR Comunicaciones";
 
 export const ogImage = {
-  url: `${SITE_URL}/og.png`,
+  url: `${SITE_URL}/og.jpg`,
   width: 1200,
   height: 630,
-  type: "image/png",
+  type: "image/jpeg",
   alt: "DAR Comunicaciones: conectividad, Dar Credi, PagaFast y raDAR",
 } as const;
 

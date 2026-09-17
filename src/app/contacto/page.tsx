@@ -117,7 +117,7 @@ export default function ContactoPage() {
     `field-input${show(field) ? " border-slate-400" : ""}`;
 
   return (
-    <div className="min-h-screen bg-[#F4F5F7] text-[#1B2A4A]">
+    <div className="page-shell">
       <PageBanner
         title="Hablemos de tu negocio"
         subtitle="Selecciona el motivo y comparte tus datos. Así conectamos tu consulta con el equipo adecuado."
@@ -146,8 +146,8 @@ export default function ContactoPage() {
               </button>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} noValidate className="bg-white border border-slate-100 rounded-md p-6 sm:p-8">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            <form onSubmit={handleSubmit} noValidate className="bg-white border border-slate-100 rounded-md p-4 sm:p-6 lg:p-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <Field id="contact-nombre" label="Nombre" error={show("nombre")}>
                   <input
                     id="contact-nombre"
@@ -257,6 +257,7 @@ export default function ContactoPage() {
                     ))}
                   </select>
                 </Field>
+                <div className="sm:col-span-2">
                 <Field id="contact-mensaje" label="Comentario">
                   <input
                     id="contact-mensaje"
@@ -267,6 +268,7 @@ export default function ContactoPage() {
                     className="field-input"
                   />
                 </Field>
+                </div>
               </div>
 
               <div className="pt-6 flex flex-col sm:flex-row sm:items-center gap-4">
@@ -281,11 +283,11 @@ export default function ContactoPage() {
                     checked={formData.privacidad}
                     onChange={(e) => setField("privacidad", e.target.checked)}
                     onBlur={() => setTouched((t) => ({ ...t, privacidad: true }))}
-                    className="mt-0.5 accent-[#1EA7E0]"
+                    className="mt-0.5 accent-primary"
                   />
                   <span>
                     Acepto el{" "}
-                    <Link href="/aviso-de-privacidad" className="text-[#1EA7E0]">
+                    <Link href="/aviso-de-privacidad" className="text-navy">
                       aviso de privacidad
                     </Link>
                     .{show("privacidad") ? ` ${show("privacidad")}` : ""}

@@ -5,7 +5,7 @@ import { Gift, GraduationCap, Headphones, Megaphone } from "lucide-react";
 
 export default function ComunidadRadarPage() {
   return (
-    <div className="min-h-screen bg-[#F4F5F7] text-[#1B2A4A]">
+    <div className="page-shell">
       <PageBanner
         title="Una comunidad para crecer acompañado"
         subtitle="raDAR conecta a los socios de DAR con beneficios, información, capacitación y soporte."
@@ -13,7 +13,7 @@ export default function ComunidadRadarPage() {
         scene="radar"
         actions={
           <div className="flex flex-wrap gap-3">
-            <Link href="/contacto" className="bg-white text-[#1EA7E0] font-display font-bold text-sm px-6 py-2.5 rounded">
+            <Link href="/contacto" className="cta-on-dark">
               Quiero unirme
             </Link>
             <Link href="/centro-radar" className="border border-white/70 text-white font-display font-semibold text-sm px-6 py-2.5 rounded">

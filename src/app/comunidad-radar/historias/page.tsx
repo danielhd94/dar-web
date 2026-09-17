@@ -3,7 +3,7 @@ import { SplitPanel } from "@/components/visual";
 
 export default function HistoriasPage() {
   return (
-    <div className="min-h-screen bg-[#F4F5F7] text-[#1B2A4A]">
+    <div className="page-shell">
       <PageBanner
         title="Historias de socios"
         subtitle="Detrás de cada negocio hay una historia. Aquí reuniremos testimonios autorizados, con resultados comprobables."
