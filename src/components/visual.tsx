@@ -1,39 +1,35 @@
 import type { ReactNode } from "react";
+import Image from "next/image";
 import Link from "next/link";
-import {
-  CreditCard,
-  Headphones,
-  MapPin,
-  Radio,
-  Smartphone,
-  Store,
-  Wifi,
-  type LucideIcon,
-} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import { scenePhotos, type SceneVariant } from "@/content/media";
 
-export type SceneVariant = "growth" | "chip" | "phone" | "pay" | "radar" | "team";
+export type { SceneVariant };
 
-const sceneIcon: Record<SceneVariant, LucideIcon> = {
-  growth: Store,
-  chip: Wifi,
-  phone: Smartphone,
-  pay: CreditCard,
-  radar: Radio,
-  team: Headphones,
-};
+export function ScenePhoto({
+  variant,
+  priority = false,
+  className = "",
+}: {
+  variant: SceneVariant;
+  priority?: boolean;
+  className?: string;
+}) {
+  const photo = scenePhotos[variant];
 
-export function HeroScene({ variant = "growth" }: { variant?: SceneVariant }) {
-  const Icon = sceneIcon[variant];
   return (
-    <div className="relative mx-auto w-full max-w-[14rem] sm:max-w-[18rem] lg:max-w-[22rem] aspect-square">
-      <div className="absolute inset-[12%] rounded-full bg-primary" />
-      <div className="absolute right-[6%] top-[18%] h-[58%] w-[42%] rounded-2xl bg-white shadow-lg border border-white/80 flex items-center justify-center">
-        <Icon className="w-16 h-16 text-navy" strokeWidth={1.5} />
-      </div>
-      <div className="absolute left-[8%] bottom-[16%] h-16 w-16 rounded-xl bg-navy flex items-center justify-center">
-        <MapPin className="w-7 h-7 text-primary" strokeWidth={2} />
-      </div>
-    </div>
+    <figure className={`relative overflow-hidden rounded-md bg-navy ${className}`}>
+      <Image
+        src={photo.src}
+        alt={photo.alt}
+        fill
+        sizes="(max-width: 768px) 100vw, 42vw"
+        className="object-cover"
+        priority={priority}
+      />
+      <span className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent" />
+      <span className="pointer-events-none absolute inset-x-0 bottom-0 h-1 bg-primary" />
+    </figure>
   );
 }
 
@@ -43,24 +39,29 @@ export function OfferCard({
   desc,
   href,
   cta,
+  photo,
 }: {
   kicker: string;
   title: string;
   desc?: string;
   href: string;
   cta: string;
+  photo?: SceneVariant;
 }) {
   return (
-    <article className="bg-white border border-slate-100 rounded-md p-5 sm:p-6 flex flex-col min-h-0 sm:min-h-[16rem] shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
-      <p className="text-xs text-slate-400 mb-4">{kicker}</p>
-      <p className="font-display font-black text-3xl sm:text-4xl tracking-tight mb-2 text-navy">
-        {title}
-      </p>
-      {desc ? <p className="text-sm text-slate-500 leading-relaxed">{desc}</p> : null}
-      <div className="mt-auto pt-8">
-        <Link href={href} className="btn-primary !text-xs !rounded !px-5">
-          {cta}
-        </Link>
+    <article className="bg-white border border-slate-100 rounded-md overflow-hidden flex flex-col min-h-0 sm:min-h-[16rem] shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+      {photo ? <ScenePhoto variant={photo} className="aspect-[16/10]" /> : null}
+      <div className="p-5 sm:p-6 flex flex-col flex-1">
+        <p className="text-xs text-slate-400 mb-4">{kicker}</p>
+        <p className="font-display font-black text-3xl sm:text-4xl tracking-tight mb-2 text-navy">
+          {title}
+        </p>
+        {desc ? <p className="text-sm text-slate-500 leading-relaxed">{desc}</p> : null}
+        <div className="mt-auto pt-8">
+          <Link href={href} className="btn-primary !text-xs !rounded !px-5">
+            {cta}
+          </Link>
+        </div>
       </div>
     </article>
   );
@@ -161,10 +162,8 @@ export function SplitPanel({
 }) {
   return (
     <section className="py-14 md:py-16">
-      <div className="section-container grid grid-cols-1 lg:grid-cols-[minmax(0,18rem)_1fr] gap-8 md:gap-10 items-center min-w-0">
-        <div className="hidden md:block">
-          <HeroScene variant={scene} />
-        </div>
+      <div className="section-container grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 items-center min-w-0">
+        <ScenePhoto variant={scene} className="aspect-[16/10] lg:aspect-[5/4]" />
         <div>
           <h2 className="font-display font-black text-2xl sm:text-[1.75rem] tracking-tight mb-3">{title}</h2>
           {children}

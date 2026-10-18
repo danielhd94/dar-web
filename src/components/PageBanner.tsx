@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { HeroScene, type SceneVariant } from "@/components/visual";
+import { ScenePhoto, type SceneVariant } from "@/components/visual";
 
 interface PageBannerProps {
   title: ReactNode;
@@ -14,7 +14,7 @@ export default function PageBanner({
   subtitle,
   actions,
   bullets,
-  scene = "growth",
+  scene,
 }: PageBannerProps) {
   return (
     <section className="band-brand text-white pt-10 pb-14 sm:pt-12 sm:pb-16 md:pt-14 md:pb-20 overflow-hidden">
@@ -38,9 +38,9 @@ export default function PageBanner({
           ) : null}
           {actions ? <div className="stack-ctas max-sm:pr-20">{actions}</div> : null}
         </div>
-        <div className="hidden md:block justify-self-end w-full">
-          <HeroScene variant={scene} />
-        </div>
+        {scene ? (
+          <ScenePhoto variant={scene} className="aspect-[16/10] lg:aspect-[5/4] w-full" />
+        ) : null}
       </div>
     </section>
   );

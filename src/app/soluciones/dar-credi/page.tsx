@@ -20,6 +20,7 @@ export default function DarCrediPage() {
             desc="Encuentra una opción de tecnología y conoce alternativas de pago claras, sujetas a evaluación."
             href="/soluciones/dar-credi/comprar"
             cta="Encontrar un punto de venta"
+            photo="phone"
           />
           <OfferCard
             kicker="Para negocios"
@@ -27,6 +28,7 @@ export default function DarCrediPage() {
             desc="Incorpora una herramienta de venta para llegar a más clientes e incrementar tu ticket."
             href="/soluciones/dar-credi/socios"
             cta="Ser socio comercial"
+            photo="growth"
           />
         </div>
       </section>

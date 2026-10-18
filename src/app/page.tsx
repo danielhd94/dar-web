@@ -1,6 +1,6 @@
 import Link from "next/link";
 import CoverageForm from "@/components/CoverageForm";
-import { HeroScene, IconTile, OfferCard, SplitPanel, StatsBand } from "@/components/visual";
+import { IconTile, OfferCard, ScenePhoto, SplitPanel, StatsBand } from "@/components/visual";
 import { permanentActions } from "@/content/site";
 import { CreditCard, Smartphone, Wifi } from "lucide-react";
 
@@ -45,8 +45,8 @@ export default function HomePage() {
               </Link>
             </div>
           </div>
-          <div className="hidden md:block">
-            <HeroScene variant="growth" />
+          <div className="w-full">
+            <ScenePhoto variant="growth" priority className="aspect-[16/10] lg:aspect-[5/4]" />
           </div>
         </div>
       </section>
@@ -72,6 +72,7 @@ export default function HomePage() {
               desc="Vende chips, portabilidades y recargas con inventario y acompañamiento comercial."
               href="/soluciones/conectividad"
               cta="Ser distribuidor"
+              photo="chip"
             />
             <OfferCard
               kicker="Financiamiento"
@@ -79,6 +80,7 @@ export default function HomePage() {
               desc="Acerca equipos a más personas y abre una nueva línea de venta en tu negocio."
               href="/soluciones/dar-credi"
               cta="Conocer Dar Credi"
+              photo="phone"
             />
             <OfferCard
               kicker="PagaFast"
@@ -86,6 +88,7 @@ export default function HomePage() {
               desc="Cobra servicios y recargas desde tu punto de venta y genera visitas recurrentes."
               href="/soluciones/pagafast"
               cta="Activar PagaFast"
+              photo="pay"
             />
           </div>
         </div>

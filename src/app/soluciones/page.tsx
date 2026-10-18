@@ -25,6 +25,7 @@ export default function SolucionesPage() {
               desc="Accede a chips, portabilidades y recargas, con atención y acompañamiento para mantener tu oferta activa."
               href="/soluciones/conectividad"
               cta="Ser distribuidor"
+              photo="chip"
             />
             <OfferCard
               kicker="Dar Credi"
@@ -32,6 +33,7 @@ export default function SolucionesPage() {
               desc="Conecta a compradores con opciones de acceso a equipos y ofrece financiamiento como herramienta de venta."
               href="/soluciones/dar-credi"
               cta="Conocer Dar Credi"
+              photo="phone"
             />
             <OfferCard
               kicker="PagaFast"
@@ -39,6 +41,7 @@ export default function SolucionesPage() {
               desc="Ofrece pagos de servicios, recargas y productos digitales para aumentar la frecuencia de visita."
               href="/soluciones/pagafast"
               cta="Activar PagaFast"
+              photo="pay"
             />
         </div>
       </section>
